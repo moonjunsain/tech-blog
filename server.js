@@ -1,16 +1,21 @@
 // imports all the necessary packages
 const express = require('express')
-const sequelize = require('./config/connection')
 const path = require('path')
+const exphbs = require('express-handlebars')
+const hbs = exphbs.create({})
 const app = express()
-
 const PORT = process.env.PORT || 3001
+const sequelize = require('./config/connection')
+
+// setting up handlebars engine
+app.engine('handlebars', hbs.engine)
+app.set('view engine', 'handlebars')
 
 // middle wares
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-app.use(path.join(__dirname, 'public'))
+app.use(express.static(path.join(__dirname, 'public/')))
 
 app.use(require('./controllers/index'))
 
