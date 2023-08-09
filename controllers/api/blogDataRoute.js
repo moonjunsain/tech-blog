@@ -1,5 +1,6 @@
 const {Blog} = require('../../models/index')
 const router = require('express').Router()
+// api/blogs
 
 // when they post a new blog
 router.post('/', async (req, res)=> {

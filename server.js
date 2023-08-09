@@ -3,10 +3,12 @@ const express = require('express')
 const path = require('path')
 const exphbs = require('express-handlebars')
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
-const hbs = exphbs.create({})
-const app = express()
-const PORT = process.env.PORT || 3001
 const sequelize = require('./config/connection')
+
+const app = express()
+const hbs = exphbs.create({})
+
+const PORT = process.env.PORT || 3001
 
 // setting up handlebars engine
 app.engine('handlebars', hbs.engine)

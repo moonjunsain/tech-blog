@@ -1,5 +1,6 @@
 const {Comment} = require('../../models/index')
 const router = require('express').Router()
+// api/comments
 
 // when they post a new comment
 router.post('/', async (req, res) => {
