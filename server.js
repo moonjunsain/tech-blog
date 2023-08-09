@@ -17,7 +17,7 @@ app.set('view engine', 'handlebars')
 // session
 const sess = {
     secret: 'Jerome does not like cats',
-    cookie: {},
+    cookie: {maxAge: 120},
     resave: false,
     saveUninitialized: true,
     // sets up session store
