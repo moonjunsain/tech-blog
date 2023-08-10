@@ -72,8 +72,10 @@ npm i
 
 ## Usage 
 
-Following is the screenshot of this app.
+Following is the screenshot of this app. and how it should look like once users start to post their blogs
 The user can use login or signup, and write a blog post in their dashboard. 
+
+session is set so that it expires in 1 hour after logging in
 
 
 ![screenshot](./screenshot-tech-blog.png)
@@ -82,6 +84,7 @@ The user can use login or signup, and write a blog post in their dashboard.
 ## Learning Points
 1. Using session to track each user
 2. Using handlebars to construct a web page
+3. interacting between front end and back end
 
 
 

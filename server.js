@@ -19,7 +19,7 @@ app.set('view engine', 'handlebars')
 // session
 const sess = {
     secret: 'Jerome does not like cats',
-    cookie: {},
+    cookie: {maxAge: 3600000}, // expires in 1 hour
     resave: false,
     saveUninitialized: true,
     // sets up session store
@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, 'public/')))
 app.use(require('./controllers/index'))
 
 // create a connection between database
-sequelize.sync({force: false}).then(()=>{
+sequelize.sync({force: true}).then(()=>{
     app.listen(PORT, ()=>{
         console.log(`App listening on http://localhost:${PORT}`)
     })
