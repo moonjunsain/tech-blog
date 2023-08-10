@@ -1,0 +1,20 @@
+[
+    {
+      "title": "Introduction to Programming",
+      "body": "Programming is the process of writing instructions for a computer to perform specific tasks...",
+      "post_date": "2023-08-09T12:00:00Z",
+      "user_id": 1
+    },
+    {
+      "title": "Exploring the Wonders of Space",
+      "body": "The universe is a vast expanse of galaxies, stars, planets, and cosmic phenomena...",
+      "post_date": "2023-08-08T15:30:00Z",
+      "user_id": 2
+    },
+    {
+      "title": "Delicious Recipes from Around the World",
+      "body": "Experience the flavors of different cultures through these mouthwatering recipes...",
+      "post_date": "2023-08-07T09:15:00Z",
+      "user_id": 3
+    }
+  ]

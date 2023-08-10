@@ -15,11 +15,11 @@
 
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password">
+                    <input type="input" class="form-control" id="password">
                     <div class="form-text">It should be more than 8 characters</div>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Sign Up</button>
+                <button id="submit-btn" type="submit" class="btn btn-primary">Sign Up</button>
 
             </form>
             <a href="/login">Log in instead</a>
@@ -28,4 +28,36 @@
     </div>
 </div>
 
-<script src="/js/signUp.js"></script>
+<script>
+    const signupForm = document.querySelector('#signup-form')
+    const username = document.getElementById('username')
+    const password = document.getElementById('password')
+
+
+    signupForm.addEventListener('submit', async function(event){
+        event.preventDefault()
+
+        //const formData = new FormData()
+        //formData.append('username', username.value)
+        //formData.append('password', password.value)
+        const bodyObj = {
+            username: username.value,
+            password: password.value
+        }
+
+        const response = await fetch('/api/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json' // Set content type to JSON
+            },
+            body: JSON.stringify(bodyObj)
+        })
+
+        if(response.ok){
+            window.location.href = '/'
+        }else {
+            const json = await response.json()
+            console.log(json)
+        }
+    })    
+</script>

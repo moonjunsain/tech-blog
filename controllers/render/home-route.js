@@ -10,8 +10,12 @@ router.get('/', async (req, res) => {
         const allPosts = await Blog.findAll({
             include:[{model: User}]
         })
-        const parsedPosts = allPosts.map((post) => post.get({plain: true}))
-        // res.json(parsedPosts)
+        const parsedPosts = allPosts.map((post) => {
+            const parsedPost = post.get({ plain: true });
+            parsedPost.username = parsedPost.user.username; // Access username within each post
+            return parsedPost;
+        });
+
         res.render('homepage', {posts: parsedPosts, loggedIn: req.session.log_in})
     }catch(error){
         res.render('error', {error})
@@ -22,10 +26,16 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try{
         const post = await Blog.findByPk(req.params.id, {
-            include: [{model: User}, {model: Comment}]
+            include: [
+                {model: User}, 
+                {model: Comment, include: {model: User}}
+            ]
         })
         const parsedPost = post.get({plain: true})
+        parsedPost.username = parsedPost.user.username
+        
         res.render('single-post', {post: parsedPost, loggedIn: req.session.log_in})
+        
     }catch(error){
         res.render('error', {error})
     }

@@ -29,9 +29,10 @@
                         </li>
                         <li class="nav-item">
                             {{#if loggedIn}}
-                            <a class="nav-link" href="/logout">logout</a>
+                            <button class="nav-link" id="logout">logout</button>
                             {{else}}
                             <a class="nav-link" href="/login">login</a>
+                            {{/if}}
                         </li>
                     </ul>
                 </div>
@@ -40,7 +41,23 @@
     </header>
 
     {{{body}}}
-
+{{#if loggedIn}}
+  <script>
+    document.querySelector('#logout').addEventListener('click', async function(event){
+    console.log("logout button clicked")
+    const response = await fetch('/api/users/logout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    });
+  
+    if (response.ok) {
+      document.location.replace('/');
+    } else {
+      alert(response.statusText);
+    }
+  });
+  </script>
+{{/if}}
 </body>
-
+    
 </html>

@@ -5,11 +5,11 @@ const router = require('express').Router()
 // when they post a new comment
 router.post('/', async (req, res) => {
     try{
-        const {text, user_id, blog_id} = req.body
-        if(text && user_id && blog_id){
+        const {text, blog_id} = req.body
+        if(text && blog_id){
             await Comment.create({
                 text,
-                user_id,
+                user_id: req.session.user_id,
                 blog_id
             })
             res.status(200).json("Successful upload")

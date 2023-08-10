@@ -2,6 +2,7 @@
 const express = require('express')
 const path = require('path')
 const exphbs = require('express-handlebars')
+const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sequelize = require('./config/connection')
 
@@ -17,7 +18,7 @@ app.set('view engine', 'handlebars')
 // session
 const sess = {
     secret: 'Jerome does not like cats',
-    cookie: {maxAge: 120},
+    cookie: {},
     resave: false,
     saveUninitialized: true,
     // sets up session store

@@ -40,6 +40,8 @@ router.get('/:id', async (req, res) => {
 
 router.get('/post', async (req, res) => {
     try{
+        console.log('\n===========================================\n')
+        console.log("post request made")
         res.render('dashboard-post')
     }catch(error){
         res.render('error', {error})

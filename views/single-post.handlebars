@@ -1,14 +1,14 @@
 <div class="row">
         <header class="d-flex justify-content-between bg-secondary p-3">
             <span>{{post.title}}</span>
-            <span>Created by: {{post.user}} on {{post.post_date}}</span>
+            <span>Created by: {{post.username}} on {{post.post_date}}</span>
         </header>
-        <main class="bg-dark p-3">
-            <p>{{body}}</p>
+        <main id="post" class="bg-dark p-3 text-white" data-postid="{{post.id}}">
+            <p>{{post.body}}</p>
             <br>
             <h4>Comments</h4>
-            {{#each comments}}
-            <p>{{text}} by {{user}}</p>
+            {{#each post.comments}}
+            <p>{{text}} by {{user.username}}</p>
             <p>{{post_date}}</p>
             {{/each}}
 
@@ -18,7 +18,7 @@
                 <div class="card-body">
                     <form id="comment-form">
                         <div class="mb-3">
-                            <label for="password" class="form-label">Write a Comment!</label>
+                            <label for="comment" class="form-label">Write a Comment!</label>
                             <input type="input" class="form-control" id="comment">
                         </div>
                         <button type="submit" class="btn btn-primary">Add comment</button>
@@ -35,3 +35,18 @@
 
         </main>
 </div>
+
+<script>
+    const commentForm = document.getElementById('comment-form')
+    const commentIn = document.getElementById('comment')
+    const post = document.getElementById('post')
+
+    commentForm.addEventListener('submit', async function(event){
+        event.preventDefault()
+        const postId = post.getAttribute('data-postid')
+        const bodyObj = {
+            text: commentIn.value,
+            post_id: postId
+        }
+    })
+</script>
