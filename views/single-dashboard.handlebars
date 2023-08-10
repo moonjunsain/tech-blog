@@ -7,7 +7,52 @@
             <label for="text-box">Content</label>
         </div>
         <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-primary m-3">Update</button>
-            <button class="btn btn-danger">Delete</button>
+            <button id="update-btn" class="btn btn-primary m-3">Update</button>
+            <button id="delete-btn" class="btn btn-danger">Delete</button>
         </div>
 </form>
+
+<script>
+    const postId = document.getElementById('post-form').getAttribute('data-id')
+    const updateBtn = document.getElementById('update-btn')
+    const deleteBtn = document.getElementById('delete-btn')
+    const title = document.getElementById('title')
+    const content = document.getElementById('content')
+
+    updateBtn.addEventListener('click', async function(event){
+        const bodyObj = {
+            title: title.value,
+            body: content.value
+        }
+
+        const response = await fetch(`/api/blogs/${postId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(bodyObj)
+        })
+
+        if(response.ok){
+            window.location.href = '/dashboard'
+        }else{
+            const json = await response.json()
+            console.log(json)
+        }
+    })
+
+    deleteBtn.addEventListener('click', async function(event){
+        console.log('delete button hit')
+        const response = await fetch(`/api/blogs/${postId}`, {
+            method: 'DELETE'
+        })
+
+        if(response.ok){
+            window.location.href = '/dashboard'
+            console.log('response ok')
+        }else {
+            const json = await response.json()
+            console.log(json)
+        }
+    })
+</script>

@@ -48,6 +48,7 @@ router.put('/:id', async (req, res) => {
 // when they delete a blog
 router.delete('/:id', async (req, res) => {
     try{
+        console.log('========================== \n Delete route hit \n ========================')
         await Blog.destroy({
             where: {
                 id: req.params.id
