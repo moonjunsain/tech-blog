@@ -4,8 +4,31 @@
 const {User, Blog, Comment} = require('../../models')
 const router = require('express').Router()
 
+// get all posts with associated user
 router.get('/', async (req, res) => {
-    
+    try{
+        const allPosts = await Blog.findAll({
+            include:[{model: User}]
+        })
+        const parsedPosts = allPosts.map((post) => post.get({plain: true}))
+        // res.json(parsedPosts)
+        res.render('homepage', {posts: parsedPosts, loggedIn: req.session.log_in})
+    }catch(error){
+        res.render('error', {error})
+    }
 })
 
 // get a single post with associated comment
+router.get('/:id', async (req, res) => {
+    try{
+        const post = await Blog.findByPk(req.params.id, {
+            include: [{model: User}, {model: Comment}]
+        })
+        const parsedPost = post.get({plain: true})
+        res.render('single-post', {post: parsedPost, loggedIn: req.session.log_in})
+    }catch(error){
+        res.render('error', {error})
+    }
+})
+
+module.exports = router

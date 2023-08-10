@@ -1,0 +1,15 @@
+{{#each posts}}
+<div class="row">
+        <a class="link-light link-underline link-underline-opacity-0" href="/{{id}}">
+            <li class="text-white col-10 p-3 " style="list-style: none;">
+                <header class="d-flex justify-content-between bg-secondary p-3">
+                    <span>{{title}}</span>
+                    <span>Created by: {{user}} on {{post_date}}</span>
+                </header>
+                <main class="bg-dark p-3">
+                    <p>{{body}}</p>
+                </main>
+            </li>
+        </a>
+</div>
+{{/each}}

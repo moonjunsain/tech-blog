@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <title>Tech Blog</title>
 </head>
 
@@ -35,17 +37,18 @@
             </div>
         </nav>
     </header>
-    <div class="row ">
-        <ul class="d-flex justify-content-center">
-            <li class="bg-secondary text-white col-10 p-3 d-flex justify-content-between"><span>Post 1</span> <span>Time</span></li>
-        </ul>
-    </div>
-    
-    <div class="d-flex justify-content-center align-items-end">
-
-        <button class="btn btn-primary my-3">New Post</button>
+    <form id="post-form" class="col-6 m-3">
+        <label for="text-box">Title</label>
+        <textarea class="form-control mb-3" placeholder="Title goes here" id="title"></textarea>
         
-    </div>
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Content goes here" id="content" style="height: 100px"></textarea>
+            <label for="text-box">Content</label>
+        </div>
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary m-3">Submit</button>
+        </div>
+    </form>
         
     </body>
     

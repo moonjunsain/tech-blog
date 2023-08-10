@@ -1,1 +1,1 @@
-// connects the router but also end point with /
+// connects the router

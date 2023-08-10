@@ -20,7 +20,7 @@ router.get('/', withAuth, async (req, res)=>{
     
         const parsedPosts = blogPosts.map((blog) => blog.get({plain: true}))
     
-        res.render('dashboard', {posts: parsedPosts})
+        res.render('dashboard', {posts: parsedPosts, loggedIn: req.session.log_in})
     }catch(error){
         res.render('error', {error})
     }
@@ -32,7 +32,7 @@ router.get('/:id', async (req, res) => {
         const blogPost = await Blog.findByPk(req.params.id)
         const parsedPost = blogPost.get({plain: true})
 
-        res.render('single-dashboard', {post: parsedPost})
+        res.render('single-dashboard', {post: parsedPost, loggedIn: req.session.log_in})
     }catch(error){
         res.render('error', {error})
     }
