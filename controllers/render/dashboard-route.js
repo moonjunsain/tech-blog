@@ -38,4 +38,12 @@ router.get('/:id', async (req, res) => {
     }
 })
 
+router.get('/post', async (req, res) => {
+    try{
+        res.render('dashboard-post')
+    }catch(error){
+        res.render('error', {error})
+    }
+})
+
 module.exports = router

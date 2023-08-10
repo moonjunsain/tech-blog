@@ -7,14 +7,54 @@ router.post('/', async (req, res) => {
     try{
         const {username, password} = req.body
         if(username && password){
-            await User.create({
+          const userData =  await User.create({
                 username,
                 password
             })
-            res.status(200).json("Successful signup")
+            req.session.save(()=>{
+                req.session.user_id = userData.id;
+                req.session.log_in = true;
+                res.status(200).json("Successful signup")
+            })
         }else {
             res.status(400).json({message: "Invalid body passed"})
         }
+    }catch(error){
+        res.status(500).json({message: "Error while trying to post a new user"})
+    }
+})
+
+router.post('/login', async (req, res)=> {
+    try{
+        const {username, password} = req.body
+        if(username && password){
+            const user = await User.findOne({
+                where: {
+                    username: username
+                }
+            })
+
+            if(!user){
+                res.status(404).json("Incorrect username or password")
+                return
+            }
+
+            const isValidPw = user.checkPassword(password)
+
+            if(!isValidPw){
+                res.status(404).json("Incorrect username or password")
+                return
+            }
+
+              req.session.save(()=>{
+                  req.session.user_id = userData.id;
+                  req.session.log_in = true;
+                  res.status(200).json("Successful login")
+              })
+              
+          }else {
+              res.status(400).json({message: "Invalid body passed"})
+          }
     }catch(error){
         res.status(500).json({message: "Error while trying to post a new user"})
     }

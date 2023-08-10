@@ -1,0 +1,13 @@
+<form id="post-form" class="col-6 m-3" data-id="{{post.id}}">
+        <label for="text-box">Title</label>
+        <textarea class="form-control mb-3" placeholder="Title goes here" id="title">{{post.title}}</textarea>
+        
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Content goes here" id="content" style="height: 100px">{{post.body}}</textarea>
+            <label for="text-box">Content</label>
+        </div>
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary m-3">Update</button>
+            <button class="btn btn-danger">Delete</button>
+        </div>
+</form>
