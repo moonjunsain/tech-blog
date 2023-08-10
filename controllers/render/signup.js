@@ -1,9 +1,7 @@
-// end point with /login
-
 const router = require('express').Router()
 
 router.get('/', (req, res)=>{
-    res.render('login')
+    res.render('signup')
 })
 
 module.exports = router
