@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 
         res.render('homepage', {posts: parsedPosts, loggedIn: req.session.log_in})
     }catch(error){
-        res.render('error', {error})
+        res.render('error', {error, loggedIn: req.session.log_in})
     }
 })
 
@@ -37,7 +37,7 @@ router.get('/:id', async (req, res) => {
         res.render('single-post', {post: parsedPost, loggedIn: req.session.log_in})
         
     }catch(error){
-        res.render('error', {error})
+        res.render('error', {error, loggedIn: req.session.log_in})
     }
 })
 

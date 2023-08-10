@@ -2,10 +2,10 @@
 <div class="row ">
     <ul class="d-flex justify-content-center">
     {{#each posts}}
-        <a href="/dashboard/{{id}}">
-            <li class="bg-secondary text-white col-10 p-3 d-flex justify-content-between">
-                <span>{{title}}</span>
-                <span>{{post_date}}</span>
+        <a class="btn col-8" href="/dashboard/{{id}}">
+            <li class="bg-secondary text-white p-3 d-flex justify-content-between">
+                <span>{{title}} </span>  
+                <span>created on {{formatDate post_date}}</span>
             </li>
         </a>
     {{/each}}
@@ -13,7 +13,7 @@
 </div>
 
 <div class="d-flex justify-content-center align-items-end">
-    <a id="new-post" class="btn btn-primary my-3" href="/dashboard/post">New Post</a>
+    <button id="new-post" class="btn btn-primary my-3">New Post</button>
 </div>
 {{else}}
 
@@ -21,3 +21,11 @@
     <h2>Log in to upload your post!</h2>
 </div>
 {{/if}}
+
+<script>
+    const button = document.getElementById('new-post')
+    button.addEventListener('click', function(event){
+        console.log('button hit')
+        window.location.href = '/dashboard/post'
+    })
+</script>

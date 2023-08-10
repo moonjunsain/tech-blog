@@ -12,10 +12,6 @@ router.post('/', async (req, res) => {
           const userData =  await User.create({
                 username,
                 password
-            }).catch((error)=>{
-                if(error){
-                    return res.status(404).json("Not a valid password or username")
-                }
             })
             req.session.save(()=>{
                 req.session.user_id = userData.id;

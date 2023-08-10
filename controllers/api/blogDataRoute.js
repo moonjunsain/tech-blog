@@ -5,12 +5,13 @@ const router = require('express').Router()
 // when they post a new blog
 router.post('/', async (req, res)=> {
     try{
-        const {title, body, user_id} = req.body
-        if(title && body && user_id){
+        const {title, body} = req.body
+        console.log(req.session.user_id)
+        if(title && body){
             await Blog.create({
                 title,
                 body,
-                user_id
+                user_id: req.session.user_id
             })
             res.status(200).json({message: "Successfully uploaded"})
         }else {

@@ -22,7 +22,16 @@ router.get('/', withAuth, async (req, res)=>{
     
         res.render('dashboard', {posts: parsedPosts, loggedIn: req.session.log_in})
     }catch(error){
-        res.render('error', {error})
+        res.render('error', {error, loggedIn: req.session.log_in})
+    }
+})
+
+router.get('/post', async (req, res) => {
+    try{
+        
+        res.render('dashboard-post', {loggedIn: req.session.log_in})
+    }catch(error){
+        res.render('error', {error, loggedIn: req.session.log_in})
     }
 })
 
@@ -34,18 +43,10 @@ router.get('/:id', async (req, res) => {
 
         res.render('single-dashboard', {post: parsedPost, loggedIn: req.session.log_in})
     }catch(error){
-        res.render('error', {error})
+        res.render('error', {error, loggedIn: req.session.log_in})
     }
 })
 
-router.get('/post', async (req, res) => {
-    try{
-        console.log('\n===========================================\n')
-        console.log("post request made")
-        res.render('dashboard-post')
-    }catch(error){
-        res.render('error', {error})
-    }
-})
+
 
 module.exports = router

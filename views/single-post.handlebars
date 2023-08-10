@@ -1,7 +1,7 @@
 <div class="row">
         <header class="d-flex justify-content-between bg-secondary p-3">
             <span>{{post.title}}</span>
-            <span>Created by: {{post.username}} on {{post.post_date}}</span>
+            <span>Created by: {{post.username}} on {{formatDate post.post_date}}</span>
         </header>
         <main id="post" class="bg-dark p-3 text-white" data-postid="{{post.id}}">
             <p>{{post.body}}</p>
@@ -9,7 +9,7 @@
             <h4>Comments</h4>
             {{#each post.comments}}
             <p>{{text}} by {{user.username}}</p>
-            <p>{{post_date}}</p>
+            <p>{{formatDate post_date}}</p>
             {{/each}}
 
             {{#if loggedIn}}
@@ -46,7 +46,22 @@
         const postId = post.getAttribute('data-postid')
         const bodyObj = {
             text: commentIn.value,
-            post_id: postId
+            blog_id: postId
+        }
+
+        const response = await fetch('/api/comments', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json' // Set content type to JSON
+            },
+            body: JSON.stringify(bodyObj)
+        })
+
+        if(response.ok){
+            location.reload()
+        }else {
+            const json = await response.json()
+            console.log(json)
         }
     })
 </script>
