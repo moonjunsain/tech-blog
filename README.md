@@ -52,6 +52,9 @@ This was done while trying to accomplish following criteria:
     THEN I am able to view posts and comments but I am prompted to log in again before I can add, update, or delete posts
 
 
+## Deployed Website
+[site](https://tech-blog-jm-f7929c0c7006.herokuapp.com/)
+
 ## Table of Contents
 
 
