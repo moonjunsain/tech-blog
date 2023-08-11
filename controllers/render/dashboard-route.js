@@ -19,7 +19,7 @@ router.get('/', withAuth, async (req, res)=>{
         })
     
         const parsedPosts = blogPosts.map((blog) => blog.get({plain: true}))
-    
+        
         res.render('dashboard', {posts: parsedPosts, loggedIn: req.session.log_in})
     }catch(error){
         res.render('error', {error, loggedIn: req.session.log_in})
